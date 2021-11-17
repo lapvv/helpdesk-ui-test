@@ -1,13 +1,20 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 // Элементы общие для всех страниц
 public abstract class AbstractPage {
 
-    protected static WebDriver driver;
+    protected WebDriver driver;
+    protected String url;
 
-    public static void setDriver(WebDriver webDriver) {
-        driver = webDriver;
+    public AbstractPage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+    }
+
+    public void open(){
+        this.driver.get(url);
     }
 }
