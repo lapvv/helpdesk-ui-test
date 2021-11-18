@@ -9,23 +9,25 @@ import java.io.IOException;
 
 public class LoginPage extends AbstractPage {
 
-    // Обычный поиск элемента
-    private WebElement user = driver.findElement(By.id(""));
-
-    // Поиск элемента через аннотацию
-    @FindBy(id = "")
-    private WebElement password;
-
     public LoginPage(WebDriver driver) {
         super(driver);
         this.url="https://at-sandbox.workbench.lanit.ru/login/?next=/";
     }
 
+    // Обычный поиск элемента
+    //private WebElement user = driver.findElement(By.id(""));
+
+    // Поиск элемента через аннотацию
+    @FindBy(name = "login")
+    private WebElement loginButton2 = driver.findElement(By.xpath("//input[@type='submit']"));
+
     // todo: остальные элементы страницы
 
-    public void login(String user, String password) throws IOException {
-        // todo
-        System.getProperties().load(ClassLoader.getSystemResourceAsStream("user.properties"));
+    // todo
+    public void login(){
+        driver.findElement(By.xpath("//input[@id='username']")).sendKeys(System.getProperty("user"));
+        driver.findElement(By.xpath("//input[@id='password']")).sendKeys(System.getProperty("password"));
+        loginButton2.click();
     }
 
 }

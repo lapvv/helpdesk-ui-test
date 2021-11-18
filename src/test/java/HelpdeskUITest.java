@@ -41,36 +41,18 @@ public class HelpdeskUITest {
     public void createTicketTest() {
         driver.get(System.getProperty("site.url"));
         MainPage mainPage = new MainPage(driver);
-        mainPage.open();
-        //mainPage.sendKeys("text");
+        mainPage.createTicket("No internet connection", "No internet connection via WI-FI");
+        mainPage.sendTicket("135@yandex.ru");
 
-        driver.findElement(By.id("id_queue"));
-        Select type = new Select(driver.findElement(By.id("id_queue")));
-        type.selectByVisibleText("Some Product");
-        String a="No internet connection";
-        driver.findElement(By.id("id_title")).sendKeys(a);
-        driver.findElement(By.id("id_body")).sendKeys("No internet connection via WI-FI");
-        String b="135@yandex.ru";
-        driver.findElement(By.xpath("//input[@name='submitter_email']")).sendKeys(b);
-        WebElement buttonTicketCreate = driver.findElement(By.xpath("//button[@class='btn btn-primary btn-lg btn-block']"));
-        buttonTicketCreate.click();
-
-//        WebElement caption = driver.findElement(By.xpath("//caption"));
-//        String a1 = caption.getText();        //*[text()='[SP-445] . No internet connection [Open]']
-        String u = driver.getCurrentUrl();
-
-        WebElement login = driver.findElement(By.xpath("//a[@id='userDropdown']"));
-        login.click();
-        driver.findElement(By.xpath("//input[@id='username']")).sendKeys(System.getProperty("user"));
-        driver.findElement(By.xpath("//input[@id='password']")).sendKeys(System.getProperty("password"));
-        WebElement loginButton = driver.findElement(By.xpath("//input[@type='submit']"));
-        loginButton.click();
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.open();
+        loginPage.login();
 
 //        WebElement lastpage = driver.findElement(By.xpath("//a[@data-dt-idx='7']"));
 //        lastpage.click();
 //        driver.findElement(By.xpath("//input[@id='search_query']")).sendKeys(b);
 
-        driver.navigate().to(u);
+//        driver.navigate().to(u);
         WebElement edit = driver.findElement(By.xpath("//span/*[1]/*[1]"));
         edit.click();
         //WebElement email = driver.findElement(By.xpath("//tbody/*[2]//*[4]"));
@@ -83,19 +65,19 @@ public class HelpdeskUITest {
         String c = title2.getAttribute("value");
         WebElement email2 = driver.findElement(By.xpath("//input[@name='submitter_email']"));
         String d = email2.getAttribute("value");
-        if (a.equals(c)) {
-            System.out.println("Email заявки совпадает с найденным");
-            if (b.equals(d)){
-                System.out.println("Имя заявки совпадает с введенным");
-            }
-            else{
-                System.out.println("Имя заявки НЕ совпадает с введенным");
-            }
-            System.out.println("Проверка заявки завершена. Данные совпадают.");
-        }
-        else{
-            System.out.println("Email заявки НЕ совпадает с найденным");
-        }
+//        if (a.equals(c)) {
+//            System.out.println("Email заявки совпадает с найденным");
+//            if (b.equals(d)){
+//                System.out.println("Имя заявки совпадает с введенным");
+//            }
+//            else{
+//                System.out.println("Имя заявки НЕ совпадает с введенным");
+//            }
+//            System.out.println("Проверка заявки завершена. Данные совпадают.");
+//        }
+//        else{
+//            System.out.println("Email заявки НЕ совпадает с найденным");
+//        }
 
 
         // ...
