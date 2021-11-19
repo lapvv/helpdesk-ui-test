@@ -50,22 +50,7 @@ public class HelpdeskUITest {
         driver.navigate().to(u);
         ticketPage.edit();
 //        ticketPage.passEmail();
-        if ("No internet connection".equals(ticketPage.PassIssueName())) {
-            System.out.println("Email заявки совпадает с найденным");
-            if ("135@yandex.ru".equals(ticketPage.passEmail())){
-                System.out.println("Имя заявки совпадает с введенным");
-            }
-            else{
-                System.out.println("Имя заявки НЕ совпадает с введенным");
-            }
-            System.out.println("Проверка заявки завершена. Данные совпадают.");
-        }
-        else{
-            System.out.println("Email заявки НЕ совпадает с найденным");
-        }
-
-
-        // ...
+        assert ("No internet connection".equals(ticketPage.PassIssueName()))&("135@yandex.ru".equals(ticketPage.passEmail()));
 
 //        // todo: чтение данных учетной записи пользователя из user.properties в System.properties
 //        см.выше
