@@ -9,9 +9,9 @@ import org.openqa.selenium.support.ui.Select;
 public class MainPage extends AbstractPage {
 
     @FindBy(name = "buttonTicketCreate")
-    private WebElement buttonTicketCreate = driver.findElement(By.xpath("//button[@class='btn btn-primary btn-lg btn-block']"));
-    private Select type = new Select(driver.findElement(By.id("id_queue")));
-    private WebElement loginButton1 = driver.findElement(By.xpath("//a[@id='userDropdown']"));
+    private final WebElement buttonTicketCreate = driver.findElement(By.xpath("//button[@class='btn btn-primary btn-lg btn-block']"));
+    private final Select type = new Select(driver.findElement(By.id("id_queue")));
+//    private final WebElement loginButton1 = driver.findElement(By.xpath("//a[@id='userDropdown']"));
 
 
 
@@ -20,16 +20,15 @@ public class MainPage extends AbstractPage {
         this.url="https://at-sandbox.workbench.lanit.ru/";
     }
 
-    public void createTicket(String title, String body){
+    public void createTicket(String title, String body, String text){
         type.selectByVisibleText("Some Product");
         driver.findElement(By.id("id_title")).sendKeys(title);
         driver.findElement(By.id("id_body")).sendKeys(body);
+        driver.findElement(By.xpath("//input[@name='submitter_email']")).sendKeys(text);
+        buttonTicketCreate.click();
     }
 
-    public void sendTicket(String text){
-        driver.findElement(By.xpath("//input[@name='submitter_email']")).sendKeys(text);
-//        buttonTicketCreate.click();
-        String u = driver.getCurrentUrl();
+    /*public void moveToLogin(){
         loginButton1.click();
-    }
+    }*/
 }
