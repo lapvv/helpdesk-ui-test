@@ -1,8 +1,8 @@
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.MainPage;
 import pages.TicketsPage;
@@ -14,7 +14,7 @@ public class HelpdeskUITest {
 
     private WebDriver driver;
 
-    @Before
+    @BeforeClass
     public void setup() throws IOException {
         // Читаем конфигурационный файл в System.properties
         System.getProperties().load(ClassLoader.getSystemResourceAsStream("config.properties"));
@@ -27,7 +27,7 @@ public class HelpdeskUITest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    @After
+    @AfterClass
     public void tearDown() {
         driver.quit();
     }
