@@ -1,8 +1,8 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
+import org.openqa.selenium.*;
 
 public class TicketsPage extends AbstractPage {
 
@@ -23,9 +23,11 @@ public class TicketsPage extends AbstractPage {
         System.out.println(c);
     }*/
 
+    @Step("Редактируем запись")
     public void edit() {
         WebElement edit = driver.findElement(By.xpath("//span/*[1]/*[1]"));
         edit.click();
+        makeScreenshot();
     }
 
     public String PassIssueName(){
@@ -36,5 +38,10 @@ public class TicketsPage extends AbstractPage {
     public String passEmail(){
         WebElement email2 = driver.findElement(By.xpath("//input[@name='submitter_email']"));
         return email2.getAttribute("value");
+    }
+
+    @Attachment(value = "Attachment Screenshot", type = "image/png")
+    public byte[] makeScreenshot() {
+        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 }
